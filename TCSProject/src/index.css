@@ -1,0 +1,66 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 220 33% 98%;
+    --foreground: 222 47% 11%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+
+    --primary: 214 89% 52%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 220 16% 96%;
+    --secondary-foreground: 222 47% 11%;
+
+    --muted: 220 16% 96%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 214 89% 52%;
+
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+.json-display {
+  position: relative;
+  font-family: 'Fira Code', 'Courier New', Courier, monospace;
+  border-radius: var(--radius);
+  background-color: hsl(220 13% 18%);
+  color: hsl(220 14% 90%);
+  padding: 0.75rem;
+  white-space: pre-wrap;
+  max-height: 350px;
+  overflow-y: auto;
+}
+
+.json-display .string { color: hsl(72, 100%, 80%); }
+.json-display .number { color: hsl(207, 82%, 76%); }
+.json-display .boolean { color: hsl(29, 84%, 65%); }
+.json-display .null { color: hsl(0, 0%, 60%); }
+.json-display .key { color: hsl(187, 73%, 75%); }
