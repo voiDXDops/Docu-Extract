@@ -31,19 +31,40 @@ export async function callGeminiAPI(
         {
           parts: [
             {
-              text: `Extract the most relevant and important information from this identification document. 
-Provide ONLY the following fields in a JSON format (include only if available in the document):
-- document_type: Type of ID (Aadhaar, PAN, Passport, Driver's License, etc.)
-- name: Full name as per the document
-- D.O.B: Date of birth in DD-MM-YYYY format
-- document_number: The unique identifier (Aadhaar number, PAN number, Passport number, etc.)
-- nationality: Person's nationality
-- issuing_authority: Authority that issued the document
-- phone_number: Phone number if available
-- address: Complete address in a clear format
-- issue_date: Date when document was issued (DD-MM-YYYY format)
-- place_of_issue: Location where document was issued
-Do NOT include disclaimers, policies, or any general text. ONLY return the structured JSON with the essential identity information.`,
+              text: `You are an intelligent document parser.
+
+Extract ONLY the most important identity information from this document text and return it strictly in a valid JSON format.
+
+Look for the following fields (include only if available):
+
+- document_type: Type of ID (e.g., Aadhaar, PAN, Passport, Driver's License)
+- name: Full name exactly as shown on the document
+- Date of Birth: Must be in DD-MM-YYYY format. Look for patterns like DOB, D.O.B., Date of Birth, Birth Date, or Born.
+- document_number: The unique ID like Aadhaar number, PAN number, Passport number, etc.
+- nationality: Person's nationality (e.g., Indian)
+- issuing_authority: Issuing authority's name (e.g., UIDAI, Government of India, RTO)
+- phone_number: Any mobile or contact number listed
+- address: Full postal address
+- issue_date: Date of issue in DD-MM-YYYY format (look for keywords like 'Date of Issue', 'Issued On', etc.)
+- place_of_issue: Place or city of issuance
+
+⚠️ Only extract and return fields that are clearly present in the input.
+⚠️ Do NOT return any general text, disclaimers, explanations, or comments.
+⚠️ Final output must be in this format:
+
+{
+  "document_type": "...",
+  "name": "...",
+  "Date of Birth": "...",
+  "document_number": "...",
+  "nationality": "...",
+  "issuing_authority": "...",
+  "phone_number": "...",
+  "address": "...",
+  "issue_date": "...",
+  "place_of_issue": "..."
+}
+`,
             },
             {
               inlineData: {
